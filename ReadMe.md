@@ -15,9 +15,13 @@ This is Squiudly's Folder Tools, it is a file exploer extension made to simplify
 - Creates a new Flutter project
 - resizes an images
 - Checks whether there an a selected amount of file with the same name and deletes any that don't meet that requirement
-- Splits a folder of images and data into valid, train, and test evenely
+- Splits a folder of images and data into valid, train, and test evenly
 - creates a yolo training folder templates
 - convert an image to a pixelated format with a custom amount of pixels high and long
+- Git Commands
+    - Pull git repo
+    - Clone git repo
+    - Create git repo
 
 ## Setting up
 To set up the script you first need to have Python installed then you need to download the file with the following git command:
