@@ -23,7 +23,7 @@ This is Squiudly's Folder Tools, it is a file exploer extension made to simplify
     - Clone git repo
     - Create git repo
 - create a template for a tech stack: 
-python, HTML, CSS, JavaScript, React, Node.js, C++, Java, SQL, Ruby, Go, PHP, Kotlin, Swift, Rust, Perl, TypeScript, C#, SHell Script (Bash)
+ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, html, css, php, json, r, dart, flutter, firebase, firebase auth, git, GitHub, visual studio code, pcb design, Arduino, raspberry pi, Linux, ai, cad, angular, .net, electrom, MySQL, NPM, react, Vue
 - Learning tech guides
 ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, html, css, php, json, r, dart, flutter, firebase, firebase auth, git, GitHub, visual studio code, pcb design, Arduino, raspberry pi, Linux, ai, cad, angular, .net, electrom, MySQL, NPM, react, Vue
 
