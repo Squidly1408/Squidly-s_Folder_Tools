@@ -5,7 +5,7 @@
 This is Squiudly's Folder Tools, it is a file exploer extension made to simplify the tasks of a software developer / machine learning specialist. It is made up of teh type of scripts that you get AI to quickyl create for a project. It also stores the scripts for future use.
 
 ## Commands
-- Downloaindg COCO and transfering it to another AI dataset while keeping only thr selected classes
+- Downloading COCO and transferring it to another AI dataset while keeping only the selected classes
 - Converting files to another file type
 - Converting an AI dataset to another
 - Delete all file in a folder with a certain file type
