@@ -22,6 +22,27 @@ This is Squiudly's Folder Tools, it is a file exploer extension made to simplify
     - Pull git repo
     - Clone git repo
     - Create git repo
+- create a template for a tech stack
+    - python
+    - HTML
+    - CSS
+    - JavaScript
+    - React
+    - Node.js
+    - C++
+    - Java
+    - SQL
+    - Ruby
+    - Go
+    - PHP
+    - Kotlin
+    - Swift
+    - Rust
+    - Perl
+    - TypeScript
+    - C#
+    - SHell Script (Bash)
+
 
 ## Setting up
 To set up the script you first need to have Python installed then you need to download the file with the following git command:
