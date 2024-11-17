@@ -19,6 +19,11 @@ This is Squiudly's Folder Tools, it is a file exploer extension made to simplify
 - creates a yolo training folder templates
 - convert an image to a pixelated format with a custom amount of pixels high and long
 - Git Commands
+    - Clone git repo
+    - commiting changes
+    - init git repo
+    - push git repo to remote
+    - git status check
     - Pull git repo
     - Clone git repo
     - Create git repo
