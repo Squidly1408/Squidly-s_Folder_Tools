@@ -33,6 +33,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, html, css, php, json, r, dart, flutter, firebase, firebase auth, git, GitHub, visual studio code, pcb design, Arduino, raspberry pi, Linux, ai, cad, angular, .net, electrom, MySQL, NPM, react, Vue
 - links to install
 - Math and how to do it
+- create, edit, delete, and manage commands via the command
 
 
 ## Setting up
