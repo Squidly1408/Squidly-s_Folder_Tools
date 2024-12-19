@@ -1,5 +1,3 @@
-# sections: folders, images
-
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image
@@ -7,26 +5,61 @@ import os
 
 
 def mass_resize_images():
-    """Resize multiple images based on user input for width or height."""
+    """Resize all images in a selected folder based on user input for width or height."""
+
+    def select_input_folder():
+        """Select the folder containing images."""
+        folder_path = filedialog.askdirectory(title="Select folder with images")
+        if folder_path:
+            input_folder_var.set(folder_path)
+
+    def select_output_folder():
+        """Select the output folder to save resized images."""
+        folder_path = filedialog.askdirectory(title="Select output folder")
+        if folder_path:
+            output_folder_var.set(folder_path)
 
     def perform_mass_resize():
+        """Resize images based on user input."""
         try:
             width = int(width_entry.get())
             height = int(height_entry.get())
+
+            # Ensure at least one dimension is greater than zero
             if width <= 0 and height <= 0:
                 messagebox.showerror("Error", "Width or Height must be greater than 0.")
                 return
 
-            # Load multiple images
-            file_paths = filedialog.askopenfilenames(
-                title="Select images",
-                filetypes=[("Image files", "*.jpg;*.jpeg;*.png;*.bmp;*.gif")],
-            )
-            if not file_paths:
-                return  # User cancelled the dialog
+            # Get selected input and output folders
+            input_folder = input_folder_var.get()
+            output_folder = output_folder_var.get()
 
-            for file_path in file_paths:
-                img = Image.open(file_path)
+            # Check if folders are selected
+            if not input_folder:
+                messagebox.showerror(
+                    "Error", "Please select an input folder with images."
+                )
+                return
+            if not output_folder:
+                messagebox.showerror("Error", "Please select an output folder.")
+                return
+
+            # Get all image files in the input folder
+            image_files = [
+                f
+                for f in os.listdir(input_folder)
+                if f.lower().endswith((".jpg", ".jpeg", ".png", ".bmp", ".gif"))
+            ]
+            if not image_files:
+                messagebox.showerror(
+                    "Error", "No image files found in the selected folder."
+                )
+                return
+
+            # Resize each image
+            for image_file in image_files:
+                image_path = os.path.join(input_folder, image_file)
+                img = Image.open(image_path)
                 original_size = img.size
 
                 # Resize the image while maintaining aspect ratio
@@ -44,39 +77,51 @@ def mass_resize_images():
                 # Perform resizing
                 img = img.resize(new_size, Image.ANTIALIAS)
 
-                # Save the resized image
-                save_path = filedialog.asksaveasfilename(
-                    initialfile=os.path.basename(file_path),
-                    defaultextension=".png",
-                    filetypes=[
-                        ("PNG files", "*.png"),
-                        ("JPEG files", "*.jpg"),
-                        ("All files", "*.*"),
-                    ],
-                )
-                if save_path:
-                    img.save(save_path)
+                # Save the resized image to the output folder
+                save_path = os.path.join(output_folder, image_file)
+                img.save(save_path)
 
             messagebox.showinfo("Success", "All images resized successfully.")
 
+        except ValueError:
+            messagebox.showerror(
+                "Error", "Please enter valid numerical values for width and height."
+            )
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
-    # Create a simple GUI for input
-    mass_resize_window = tk.Toplevel()
-    mass_resize_window.title("Mass Resize Images")
+    # Create the main window
+    root = tk.Tk()
+    root.title("Mass Image Resizer")
 
-    tk.Label(mass_resize_window, text="Width (0 to keep aspect ratio):").pack(pady=5)
-    width_entry = tk.Entry(mass_resize_window)
+    # Input folder selection
+    input_folder_var = tk.StringVar()
+    tk.Label(root, text="Input Folder (Images):").pack(pady=5)
+    input_folder_entry = tk.Entry(root, textvariable=input_folder_var, width=50)
+    input_folder_entry.pack(pady=5)
+    tk.Button(root, text="Select Folder", command=select_input_folder).pack(pady=5)
+
+    # Output folder selection
+    output_folder_var = tk.StringVar()
+    tk.Label(root, text="Output Folder (Save Resized Images):").pack(pady=5)
+    output_folder_entry = tk.Entry(root, textvariable=output_folder_var, width=50)
+    output_folder_entry.pack(pady=5)
+    tk.Button(root, text="Select Folder", command=select_output_folder).pack(pady=5)
+
+    # Width and Height input
+    tk.Label(root, text="Width (0 to keep aspect ratio):").pack(pady=5)
+    width_entry = tk.Entry(root)
     width_entry.pack(pady=5)
 
-    tk.Label(mass_resize_window, text="Height (0 to keep aspect ratio):").pack(pady=5)
-    height_entry = tk.Entry(mass_resize_window)
+    tk.Label(root, text="Height (0 to keep aspect ratio):").pack(pady=5)
+    height_entry = tk.Entry(root)
     height_entry.pack(pady=5)
 
-    tk.Button(
-        mass_resize_window, text="Resize Images", command=perform_mass_resize
-    ).pack(pady=20)
+    # Resize Button
+    tk.Button(root, text="Resize Images", command=perform_mass_resize).pack(pady=20)
+
+    # Start the main event loop
+    root.mainloop()
 
 
 if __name__ == "__main__":
