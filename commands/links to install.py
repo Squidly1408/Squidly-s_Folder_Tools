@@ -1,3 +1,5 @@
+# sections: other, code
+
 import tkinter as tk
 from tkinter import ttk
 import webbrowser

@@ -1,14 +1,17 @@
+# sections: images
+
 import cv2
 import numpy as np
 from tkinter import Tk, filedialog, simpledialog
 from pathlib import Path
+
 
 def pixelate_image():
     # Prompt the user to select an image file
     Tk().withdraw()  # Hide the main tkinter window
     file_path = filedialog.askopenfilename(
         title="Select an Image",
-        filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.bmp;*.tiff")]
+        filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.bmp;*.tiff")],
     )
 
     if not file_path:
@@ -20,7 +23,7 @@ def pixelate_image():
         "Pixelation Level",
         "Enter the number of pixels (e.g., 50 for 50x50 resolution):",
         minvalue=1,
-        maxvalue=1000
+        maxvalue=1000,
     )
 
     if not pixel_count:
@@ -45,29 +48,44 @@ def pixelate_image():
     original_height, original_width = bgr.shape[:2]
 
     # Resize the image to the desired pixelation level
-    pixelated_bgr = cv2.resize(bgr, (pixel_count, pixel_count), interpolation=cv2.INTER_LINEAR)
+    pixelated_bgr = cv2.resize(
+        bgr, (pixel_count, pixel_count), interpolation=cv2.INTER_LINEAR
+    )
 
     # Scale it back to the original dimensions
-    pixelated_bgr = cv2.resize(pixelated_bgr, (original_width, original_height), interpolation=cv2.INTER_NEAREST)
+    pixelated_bgr = cv2.resize(
+        pixelated_bgr,
+        (original_width, original_height),
+        interpolation=cv2.INTER_NEAREST,
+    )
 
     if alpha is not None:
         # Process the alpha channel similarly
-        pixelated_alpha = cv2.resize(alpha, (pixel_count, pixel_count), interpolation=cv2.INTER_LINEAR)
-        pixelated_alpha = cv2.resize(pixelated_alpha, (original_width, original_height), interpolation=cv2.INTER_NEAREST)
-        
+        pixelated_alpha = cv2.resize(
+            alpha, (pixel_count, pixel_count), interpolation=cv2.INTER_LINEAR
+        )
+        pixelated_alpha = cv2.resize(
+            pixelated_alpha,
+            (original_width, original_height),
+            interpolation=cv2.INTER_NEAREST,
+        )
+
         # Merge the pixelated BGR and alpha channels
         pixelated_image = np.dstack((pixelated_bgr, pixelated_alpha))
     else:
         pixelated_image = pixelated_bgr
 
     # Save the result
-    output_path = Path(file_path).with_name(f"pixelated_{pixel_count}x{pixel_count}.png")
+    output_path = Path(file_path).with_name(
+        f"pixelated_{pixel_count}x{pixel_count}.png"
+    )
     cv2.imwrite(str(output_path), pixelated_image)
 
     print(f"Pixelated image saved to: {output_path}")
     cv2.imshow("Pixelated Image", pixelated_bgr if alpha is None else pixelated_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     pixelate_image()

@@ -1,9 +1,13 @@
+# sections: iamges
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image
 
+
 def resize_image():
     """Resize an image based on user input for width or height."""
+
     def perform_resize():
         try:
             width = int(width_entry.get())
@@ -13,8 +17,10 @@ def resize_image():
                 return
 
             # Load the image
-            file_path = filedialog.askopenfilename(title="Select an image", 
-                                                   filetypes=[("Image files", "*.jpg;*.jpeg;*.png;*.bmp;*.gif")])
+            file_path = filedialog.askopenfilename(
+                title="Select an image",
+                filetypes=[("Image files", "*.jpg;*.jpeg;*.png;*.bmp;*.gif")],
+            )
             if not file_path:
                 return  # User cancelled the dialog
 
@@ -37,13 +43,19 @@ def resize_image():
             img = img.resize(new_size, Image.ANTIALIAS)
 
             # Save the resized image
-            save_path = filedialog.asksaveasfilename(defaultextension=".png",
-                                                       filetypes=[("PNG files", "*.png"),
-                                                                  ("JPEG files", "*.jpg"),
-                                                                  ("All files", "*.*")])
+            save_path = filedialog.asksaveasfilename(
+                defaultextension=".png",
+                filetypes=[
+                    ("PNG files", "*.png"),
+                    ("JPEG files", "*.jpg"),
+                    ("All files", "*.*"),
+                ],
+            )
             if save_path:
                 img.save(save_path)
-                messagebox.showinfo("Success", f"Image resized and saved to {save_path}")
+                messagebox.showinfo(
+                    "Success", f"Image resized and saved to {save_path}"
+                )
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
@@ -51,7 +63,7 @@ def resize_image():
     # Create a simple GUI for input
     resize_window = tk.Toplevel()
     resize_window.title("Resize Image")
-    
+
     tk.Label(resize_window, text="Width (0 to keep aspect ratio):").pack(pady=5)
     width_entry = tk.Entry(resize_window)
     width_entry.pack(pady=5)
@@ -61,6 +73,7 @@ def resize_image():
     height_entry.pack(pady=5)
 
     tk.Button(resize_window, text="Resize", command=perform_resize).pack(pady=20)
+
 
 if __name__ == "__main__":
     resize_image()

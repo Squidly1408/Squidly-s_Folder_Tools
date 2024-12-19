@@ -1,3 +1,5 @@
+# sections: images
+
 import tkinter as tk
 from tkinter import filedialog, scrolledtext, ttk
 from PIL import Image, ImageEnhance

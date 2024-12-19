@@ -1,6 +1,9 @@
+# sections: folders, ai
+
 import pandas as pd
 import sys
 from pathlib import Path
+
 
 def convert_dataset(input_file, output_file):
     """Convert a dataset from one format to another based on file extension."""
@@ -10,26 +13,26 @@ def convert_dataset(input_file, output_file):
         output_extension = Path(output_file).suffix
 
         # Read the input file based on its format
-        if input_extension == '.csv':
+        if input_extension == ".csv":
             data = pd.read_csv(input_file)
-        elif input_extension == '.json':
+        elif input_extension == ".json":
             data = pd.read_json(input_file)
-        elif input_extension == '.xlsx':
+        elif input_extension == ".xlsx":
             data = pd.read_excel(input_file)
-        elif input_extension == '.parquet':
+        elif input_extension == ".parquet":
             data = pd.read_parquet(input_file)
         else:
             print(f"Unsupported input format: {input_extension}")
             return
 
         # Write to the output file based on the specified format
-        if output_extension == '.csv':
+        if output_extension == ".csv":
             data.to_csv(output_file, index=False)
-        elif output_extension == '.json':
-            data.to_json(output_file, orient='records', lines=True)
-        elif output_extension == '.xlsx':
+        elif output_extension == ".json":
+            data.to_json(output_file, orient="records", lines=True)
+        elif output_extension == ".xlsx":
             data.to_excel(output_file, index=False)
-        elif output_extension == '.parquet':
+        elif output_extension == ".parquet":
             data.to_parquet(output_file, index=False)
         else:
             print(f"Unsupported output format: {output_extension}")
@@ -38,6 +41,7 @@ def convert_dataset(input_file, output_file):
         print(f"Successfully converted '{input_file}' to '{output_file}'.")
     except Exception as e:
         print(f"Error converting file: {e}")
+
 
 if __name__ == "__main__":
     # Check for correct number of arguments

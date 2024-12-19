@@ -1,10 +1,14 @@
+# sections: folders, images
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image
 import os
 
+
 def mass_resize_images():
     """Resize multiple images based on user input for width or height."""
+
     def perform_mass_resize():
         try:
             width = int(width_entry.get())
@@ -12,10 +16,12 @@ def mass_resize_images():
             if width <= 0 and height <= 0:
                 messagebox.showerror("Error", "Width or Height must be greater than 0.")
                 return
-            
+
             # Load multiple images
-            file_paths = filedialog.askopenfilenames(title="Select images", 
-                                                      filetypes=[("Image files", "*.jpg;*.jpeg;*.png;*.bmp;*.gif")])
+            file_paths = filedialog.askopenfilenames(
+                title="Select images",
+                filetypes=[("Image files", "*.jpg;*.jpeg;*.png;*.bmp;*.gif")],
+            )
             if not file_paths:
                 return  # User cancelled the dialog
 
@@ -39,11 +45,15 @@ def mass_resize_images():
                 img = img.resize(new_size, Image.ANTIALIAS)
 
                 # Save the resized image
-                save_path = filedialog.asksaveasfilename(initialfile=os.path.basename(file_path),
-                                                           defaultextension=".png",
-                                                           filetypes=[("PNG files", "*.png"),
-                                                                      ("JPEG files", "*.jpg"),
-                                                                      ("All files", "*.*")])
+                save_path = filedialog.asksaveasfilename(
+                    initialfile=os.path.basename(file_path),
+                    defaultextension=".png",
+                    filetypes=[
+                        ("PNG files", "*.png"),
+                        ("JPEG files", "*.jpg"),
+                        ("All files", "*.*"),
+                    ],
+                )
                 if save_path:
                     img.save(save_path)
 
@@ -55,7 +65,7 @@ def mass_resize_images():
     # Create a simple GUI for input
     mass_resize_window = tk.Toplevel()
     mass_resize_window.title("Mass Resize Images")
-    
+
     tk.Label(mass_resize_window, text="Width (0 to keep aspect ratio):").pack(pady=5)
     width_entry = tk.Entry(mass_resize_window)
     width_entry.pack(pady=5)
@@ -64,7 +74,10 @@ def mass_resize_images():
     height_entry = tk.Entry(mass_resize_window)
     height_entry.pack(pady=5)
 
-    tk.Button(mass_resize_window, text="Resize Images", command=perform_mass_resize).pack(pady=20)
+    tk.Button(
+        mass_resize_window, text="Resize Images", command=perform_mass_resize
+    ).pack(pady=20)
+
 
 if __name__ == "__main__":
     mass_resize_images()

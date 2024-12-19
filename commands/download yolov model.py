@@ -1,3 +1,5 @@
+# sections: ai
+
 import os
 import requests
 import zipfile
@@ -20,16 +22,18 @@ def download_yolo(version, destination):
     if response.status_code == 200:
         zip_file_path = os.path.join(destination, f"yolov{version}.zip")
 
-        with open(zip_file_path, 'wb') as f:
+        with open(zip_file_path, "wb") as f:
             f.write(response.content)
 
         # Extract the downloaded zip file
-        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
             zip_ref.extractall(destination)
 
         # Remove the zip file after extraction
         os.remove(zip_file_path)
-        messagebox.showinfo("Success", f"YOLOv{version} downloaded and extracted to {destination}")
+        messagebox.showinfo(
+            "Success", f"YOLOv{version} downloaded and extracted to {destination}"
+        )
     else:
         messagebox.showerror("Error", "Failed to download the specified YOLO version.")
 
@@ -46,15 +50,27 @@ def create_download_interface():
 
     tk.Label(root, text="Choose YOLO version:").pack(pady=10)
     version_var = tk.StringVar(value="v7")
-    tk.Radiobutton(root, text="YOLOv7", variable=version_var, value="v7").pack(anchor=tk.W)
-    tk.Radiobutton(root, text="YOLOv8", variable=version_var, value="v8").pack(anchor=tk.W)
+    tk.Radiobutton(root, text="YOLOv7", variable=version_var, value="v7").pack(
+        anchor=tk.W
+    )
+    tk.Radiobutton(root, text="YOLOv8", variable=version_var, value="v8").pack(
+        anchor=tk.W
+    )
 
-    tk.Button(root, text="Select Destination", command=lambda: destination_var.set(choose_destination())).pack(pady=10)
+    tk.Button(
+        root,
+        text="Select Destination",
+        command=lambda: destination_var.set(choose_destination()),
+    ).pack(pady=10)
 
     destination_var = tk.StringVar(value="")
-    tk.Entry(root, textvariable=destination_var, state='readonly').pack(pady=10)
+    tk.Entry(root, textvariable=destination_var, state="readonly").pack(pady=10)
 
-    tk.Button(root, text="Download", command=lambda: download_yolo(version_var.get(), destination_var.get())).pack(pady=20)
+    tk.Button(
+        root,
+        text="Download",
+        command=lambda: download_yolo(version_var.get(), destination_var.get()),
+    ).pack(pady=20)
 
     root.mainloop()
 

@@ -1,3 +1,5 @@
+# sections: folders, images
+
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
@@ -8,6 +10,7 @@ import shutil
 # Path to commands folder
 COMMANDS_PATH = Path(__file__).parent / "commands"
 
+
 class ImageSorter:
     def __init__(self, root):
         self.root = root
@@ -16,19 +19,35 @@ class ImageSorter:
         self.root.configure(bg="#171717")
 
         # UI Elements
-        self.instructions = tk.Label(root, text="Select a folder with images:", bg="#171717", fg="white")
+        self.instructions = tk.Label(
+            root, text="Select a folder with images:", bg="#171717", fg="white"
+        )
         self.instructions.pack(pady=10)
 
-        self.select_folder_btn = tk.Button(root, text="Choose Folder", command=self.select_folder, bg="white", fg="#171717")
+        self.select_folder_btn = tk.Button(
+            root,
+            text="Choose Folder",
+            command=self.select_folder,
+            bg="white",
+            fg="#171717",
+        )
         self.select_folder_btn.pack(pady=10)
 
-        self.num_folders_label = tk.Label(root, text="Enter the number of folders:", bg="#171717", fg="white")
+        self.num_folders_label = tk.Label(
+            root, text="Enter the number of folders:", bg="#171717", fg="white"
+        )
         self.num_folders_label.pack(pady=10)
 
         self.num_folders_entry = tk.Entry(root)
         self.num_folders_entry.pack(pady=10)
 
-        self.create_folders_btn = tk.Button(root, text="Create Folders", command=self.create_folders, bg="white", fg="#171717")
+        self.create_folders_btn = tk.Button(
+            root,
+            text="Create Folders",
+            command=self.create_folders,
+            bg="white",
+            fg="#171717",
+        )
         self.create_folders_btn.pack(pady=10)
 
         self.folder_path = None
@@ -51,7 +70,9 @@ class ImageSorter:
             if not self.folder_path:
                 raise ValueError("No folder selected.")
 
-            self.folders = [Path(self.folder_path) / f"Folder_{i+1}" for i in range(num_folders)]
+            self.folders = [
+                Path(self.folder_path) / f"Folder_{i+1}" for i in range(num_folders)
+            ]
             for folder in self.folders:
                 folder.mkdir(exist_ok=True)
 
@@ -62,9 +83,11 @@ class ImageSorter:
 
     def load_images(self):
         """Load all images from the selected folder."""
-        self.images = list(Path(self.folder_path).glob("*.png")) + \
-                      list(Path(self.folder_path).glob("*.jpg")) + \
-                      list(Path(self.folder_path).glob("*.jpeg"))
+        self.images = (
+            list(Path(self.folder_path).glob("*.png"))
+            + list(Path(self.folder_path).glob("*.jpg"))
+            + list(Path(self.folder_path).glob("*.jpeg"))
+        )
 
         if not self.images:
             messagebox.showerror("Error", "No images found in the folder.")
@@ -80,10 +103,14 @@ class ImageSorter:
         sorting_window.geometry("800x600")
         sorting_window.configure(bg="#171717")
 
-        self.current_image_label = tk.Label(sorting_window, text="", bg="#171717", fg="white")
+        self.current_image_label = tk.Label(
+            sorting_window, text="", bg="#171717", fg="white"
+        )
         self.current_image_label.pack(pady=10)
 
-        self.canvas = tk.Canvas(sorting_window, width=600, height=400, bg="#171717", highlightthickness=0)
+        self.canvas = tk.Canvas(
+            sorting_window, width=600, height=400, bg="#171717", highlightthickness=0
+        )
         self.canvas.pack(pady=10)
 
         self.folder_buttons_frame = tk.Frame(sorting_window, bg="#171717")
@@ -92,9 +119,12 @@ class ImageSorter:
         # Add folder buttons
         for folder in self.folders:
             btn = tk.Button(
-                self.folder_buttons_frame, text=folder.name,
+                self.folder_buttons_frame,
+                text=folder.name,
                 command=lambda folder=folder: self.move_image(folder),
-                bg="white", fg="#171717", width=15
+                bg="white",
+                fg="#171717",
+                width=15,
             )
             btn.pack(side=tk.LEFT, padx=5)
 

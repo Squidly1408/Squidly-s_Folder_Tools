@@ -1,5 +1,8 @@
+# sections: folders
+
 import os
 from pathlib import Path
+
 
 def delete_files_by_extension(extension):
     """Delete all files with the given extension in the current directory."""
@@ -20,11 +23,12 @@ def delete_files_by_extension(extension):
     else:
         print(f"No files with extension '{extension}' found.")
 
+
 if __name__ == "__main__":
     # Get user input for the file extension
     extension = input("Enter the file extension to delete (e.g., .txt): ")
-    
-    if not extension.startswith('.'):
-        extension = '.' + extension  # Ensure it starts with a dot
+
+    if not extension.startswith("."):
+        extension = "." + extension  # Ensure it starts with a dot
 
     delete_files_by_extension(extension)
