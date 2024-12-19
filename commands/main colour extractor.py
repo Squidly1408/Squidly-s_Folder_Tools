@@ -1,5 +1,3 @@
-# sections: images
-
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from colorthief import ColorThief
@@ -10,7 +8,7 @@ class ColorExtractorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Main Color Extractor")
-        self.root.geometry("500x400")
+        self.root.geometry("600x500")
         self.root.configure(bg="#171717")
 
         self.image_path = None
@@ -50,9 +48,9 @@ class ColorExtractorApp:
             text="Select an Image to Extract Colors",
             fg="white",
             bg="#171717",
-            font=("Arial", 16),
+            font=("Arial", 18),
         )
-        self.title_label.pack(pady=20)
+        self.title_label.grid(row=0, column=0, pady=20, padx=10)
 
         # Load Image Button
         self.load_button = tk.Button(
@@ -63,12 +61,22 @@ class ColorExtractorApp:
             fg="#171717",
             borderwidth=2,
             relief="groove",
+            font=("Arial", 12),
         )
-        self.load_button.pack(pady=10)
+        self.load_button.grid(row=1, column=0, pady=10, padx=10)
 
-        # Color Display
+        # Color Display Section
+        self.color_label = tk.Label(
+            self.scrollable_frame,
+            text="Main Extracted Colors",
+            fg="white",
+            bg="#171717",
+            font=("Arial", 16),
+        )
+        self.color_label.grid(row=2, column=0, pady=15, padx=10)
+
         self.color_frame = tk.Frame(self.scrollable_frame, bg="#171717")
-        self.color_frame.pack(pady=10)
+        self.color_frame.grid(row=3, column=0, pady=10, padx=10)
 
         # Save Colors Button
         self.save_button = tk.Button(
@@ -79,8 +87,9 @@ class ColorExtractorApp:
             fg="#171717",
             borderwidth=2,
             relief="groove",
+            font=("Arial", 12),
         )
-        self.save_button.pack(pady=5)
+        self.save_button.grid(row=4, column=0, pady=15, padx=10)
 
     def load_image(self):
         """Open a dialog to load an image and extract the main colors."""
@@ -107,13 +116,13 @@ class ColorExtractorApp:
             for color in self.main_colors:
                 hex_color = "#{:02x}{:02x}{:02x}".format(*color)
                 color_block_frame = tk.Frame(self.color_frame, bg="#171717")
-                color_block_frame.pack(pady=5, fill="x")
+                color_block_frame.grid(sticky="ew", pady=5)
 
                 # Color block label
                 color_block = tk.Label(
                     color_block_frame, bg=hex_color, width=20, height=2
                 )
-                color_block.pack(side=tk.LEFT, padx=10)
+                color_block.grid(row=0, column=0, padx=10)
 
                 # Copy icon (button)
                 copy_button = tk.Button(
@@ -124,8 +133,9 @@ class ColorExtractorApp:
                     fg="#171717",
                     borderwidth=2,
                     relief="groove",
+                    font=("Arial", 10),
                 )
-                copy_button.pack(side=tk.LEFT, padx=10)
+                copy_button.grid(row=0, column=1, padx=10)
 
         except Exception as e:
             messagebox.showerror("Error", f"Failed to extract colors: {e}")
