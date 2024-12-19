@@ -34,6 +34,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - links to install
 - Math and how to do it
 - create, edit, delete, and manage commands via the command
+- Use your computer as a montior and control other devices via the ports on your computer
 
 
 ## Setting up
