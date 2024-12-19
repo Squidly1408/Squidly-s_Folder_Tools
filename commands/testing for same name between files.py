@@ -1,5 +1,3 @@
-# sections: folders
-
 import os
 from tkinter import (
     Tk,
@@ -115,7 +113,13 @@ class App:
         frame = Frame(self.root, bg="#171717")
         frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-        folder_image = PhotoImage(file=f"{IMAGES_PATH}/folder.png")
+        # Folder image handling
+        folder_image_path = os.path.join(IMAGES_PATH, "folder.png")
+        if os.path.exists(folder_image_path):
+            folder_image = PhotoImage(file=folder_image_path)
+        else:
+            folder_image = PhotoImage()  # Placeholder if image is missing
+
         folder_button = Button(
             frame,
             text="Select folder",
