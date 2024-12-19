@@ -1,7 +1,12 @@
-train: ...
-test: ...
-val: ...
+# insert your images and texts in train, valid, test, they should be around:
+# train = 50%
+# test = 25%
+# valid = 25%
+
+train: 'insert link to train folder'
+test: 'insert link to test folder'
+val: 'insert link to valid folder'
 
 nc: 8
 
-names: [person, car, truck, motorbike, bus, bicycle, boat, other]
+names: ['names', 'of', 'the', 'classes']
