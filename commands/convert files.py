@@ -1,5 +1,3 @@
-# sections: folders
-
 import os
 from tkinter import (
     Tk,
