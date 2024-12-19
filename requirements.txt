@@ -5,11 +5,8 @@ google_auth_oauthlib==1.2.1
 keyboard==0.13.5
 matplotlib==3.10.0
 numpy==2.2.0
-opencv_contrib_python==4.10.0.84
-opencv_python==4.9.0.80
-opencv_python_headless==4.10.0.84
 openpyxl==3.1.2
-pandas==1.5.3
+pandas==2.2.3
 Pillow==10.0.0
 Pillow==11.0.0
 protobuf==5.29.2
