@@ -36,6 +36,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - create, edit, delete, and manage commands via the command
 - Use your computer as a montior and control other devices via the ports on your computer
 - Create a requirements folder with just a click, there is qa script that does this for you
+- Corrupting folders and files
 
 
 ## Setting up
