@@ -1,3 +1,5 @@
+# sections: folder, ai
+
 import os
 import random
 import shutil

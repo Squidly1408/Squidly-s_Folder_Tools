@@ -1,3 +1,5 @@
+# sections: photo
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from colorthief import ColorThief

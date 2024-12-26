@@ -1,3 +1,5 @@
+# sections: folders, images
+
 import os
 from tkinter import (
     Tk,

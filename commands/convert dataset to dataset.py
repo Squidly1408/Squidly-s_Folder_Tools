@@ -1,3 +1,5 @@
+# sections: ai, folders
+
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
