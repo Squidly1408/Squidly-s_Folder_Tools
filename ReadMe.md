@@ -2,7 +2,7 @@
 ![Logo](https://raw.githubusercontent.com/Squidly1408/Squidly1408/refs/heads/main/images/Squidly's%20Folder%20Tools.png)
 
 # Squidly's Folder Tools
-This is Squiudly's Folder Tools, it is a file exploer extension made to simplify the tasks of a software developer / machine learning specialist. It is made up of teh type of scripts that you get AI to quickyl create for a project. It also stores the scripts for future use.
+This is Squidly's Folder Tools, it is a file exploer extension made to simplify the tasks of a software developer / machine learning specialist. It is made up of teh type of scripts that you get AI to quickyl create for a project. It also stores the scripts for future use.
 
 ## Commands
 - Downloading COCO and transferring it to another AI dataset while keeping only the selected classes
@@ -57,6 +57,9 @@ Downloaded you need to run the init.py script after replacing the following line
 ``` python 
 main_script_path = os.path.abspath("C:\\Path\\To\\main.py")  # Adjust this as needed
 ```
+
+## Creator Notes:
+Currently this projrct is in the idea phase, a phase where I am currently thinking of and adding quickly differn't things that may be helpful to have in this project. As well as a phase where I am focusing on the potential functionality and use of the app, instead of things like UI and UX. This being said, in the future I plan to re-code and re-design it, to better match theming standards, functionality, and use of this project. As well I am looking at making it an app of its own or making intergrated with-in the windows folder app, for better use of the app. 
 
 \
 \
