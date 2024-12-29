@@ -169,9 +169,11 @@ class SquidlyFolderTools:
 
             for section in sections:
                 if section not in self.commands:
-                    self.commands[section] = []
-                self.commands[section].append(command_file.stem)
+                    self.commands[section] = set()  # Use a set to prevent duplicates
+                self.commands[section].add(command_file.stem)
 
+        # Convert sets back to lists for compatibility
+        self.commands = {k: list(v) for k, v in self.commands.items()}
         self.update_list()
 
     def update_list(self, *args):
@@ -213,6 +215,7 @@ class SquidlyFolderTools:
         if selected_command:
             command_path = COMMANDS_PATH / f"{selected_command}.py"
             subprocess.Popen([sys.executable, str(command_path)])
+            self.root.destroy()  # Close the main script after running the command
 
 
 # Function to make sure the script runs with pythonw.exe without opening a terminal
