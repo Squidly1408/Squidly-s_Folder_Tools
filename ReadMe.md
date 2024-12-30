@@ -20,7 +20,7 @@ This is Squidly's Folder Tools, it is a file exploer extension made to simplify 
 - convert an image to a pixelated format with a custom amount of pixels high and long
 - Git Commands
     - Clone git repo
-    - commiting changes
+    - comitting changes
     - init git repo
     - push git repo to remote
     - git status check
@@ -35,7 +35,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - Math and how to do it
 - create, edit, delete, and manage commands via the command
 - Use your computer as a montior and control other devices via the ports on your computer
-- Create a requirements folder with just a click, there is qa script that does this for you
+- Create a requirements folder with just a click, there is a script that does this for you
 - Corrupting folders and files
 
 
