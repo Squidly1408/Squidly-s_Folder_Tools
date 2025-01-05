@@ -130,7 +130,7 @@ class DocumentCombiner:
                             variable=var,
                             bg="#171717",
                             fg="white",
-                            selectcolor="#00796b",
+                            selectcolor="#1D1D1D",
                             font=("Arial", 10),
                         )
                         checkbutton.grid(row=page_num + 1, column=column, sticky="w")
@@ -146,7 +146,7 @@ class DocumentCombiner:
                             variable=var,
                             bg="#171717",
                             fg="white",
-                            selectcolor="#00796b",
+                            selectcolor="#1D1D1D",
                             font=("Arial", 10),
                         )
                         checkbutton.grid(row=page_num + 1, column=column, sticky="w")
@@ -163,7 +163,7 @@ class DocumentCombiner:
                             variable=var,
                             bg="#171717",
                             fg="white",
-                            selectcolor="#00796b",
+                            selectcolor="#1D1D1D",
                             font=("Arial", 10),
                         )
                         checkbutton.grid(row=line_num + 1, column=column, sticky="w")
@@ -179,40 +179,56 @@ class DocumentCombiner:
                             variable=var,
                             bg="#171717",
                             fg="white",
-                            selectcolor="#00796b",
+                            selectcolor="#1D1D1D",
                             font=("Arial", 10),
                         )
                         checkbutton.grid(row=slide_num + 1, column=column, sticky="w")
 
     def combine_docs(self):
-        """Combine selected pages from the loaded documents."""
+        """Combine selected pages from the loaded documents row by row."""
         pdf_writer = PdfWriter()
         doc_combined = Document()
         txt_combined = []
         ppt_combined = Presentation()
 
+        # Group selected items by document and their type
+        combined_rows = {}
         for var, doc_type, doc, index in self.page_vars:
             if var.get():
-                if doc_type == "pdf":
+                doc_key = (doc, doc_type)  # Use doc and type as the key
+                if doc_key not in combined_rows:
+                    combined_rows[doc_key] = []
+                combined_rows[doc_key].append(index)
+
+        # Process each document type in the combined rows
+        for (doc, doc_type), indices in combined_rows.items():
+            indices.sort()  # Sort indices to preserve order
+            if doc_type == "pdf":
+                for index in indices:
                     pdf_writer.add_page(doc.pages[index])
-                elif doc_type == "docx":
+            elif doc_type == "docx":
+                for index in indices:
                     doc_combined.add_paragraph(doc.paragraphs[index].text)
-                elif doc_type == "txt":
+            elif doc_type == "txt":
+                for index in indices:
                     txt_combined.append(doc[index])
-                elif doc_type == "pptx":
+            elif doc_type == "pptx":
+                for index in indices:
                     slide = ppt_combined.slides.add_slide(
                         doc.slides[index].slide_layout
                     )
                     for shape in doc.slides[index].shapes:
-                        new_shape = slide.shapes.add_shape(
-                            shape.auto_shape_type,
-                            shape.left,
-                            shape.top,
-                            shape.width,
-                            shape.height,
-                        )
-                        new_shape.text = shape.text
+                        if shape.has_text_frame:  # Check if shape has text
+                            new_shape = slide.shapes.add_shape(
+                                shape.auto_shape_type,
+                                shape.left,
+                                shape.top,
+                                shape.width,
+                                shape.height,
+                            )
+                            new_shape.text = shape.text
 
+        # Save the combined file
         output_path = filedialog.asksaveasfilename(
             defaultextension=".pdf",
             filetypes=[
