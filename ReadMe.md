@@ -38,6 +38,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - Create a requirements folder with just a click, there is a script that does this for you
 - Corrupting folders and files
 - can randomly pick from a list of strings
+- can randomly generate a string with the choice of inlcuing numbers and characters or not
 
 
 
