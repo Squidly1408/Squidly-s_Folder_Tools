@@ -39,6 +39,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - Corrupting folders and files
 - can randomly pick from a list of strings
 - can randomly generate a string with the choice of inlcuing numbers and characters or not
+- can generate random nbumbers from two selected doubles, one the lower limit, and 2 the upper limit
 
 
 
