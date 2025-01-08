@@ -4,11 +4,11 @@ fpdf==1.7.2
 google_auth_oauthlib==1.2.1
 keyboard==0.13.5
 matplotlib==3.10.0
-numpy==2.2.0
+numpy==2.2.1
 openpyxl==3.1.2
 pandas==2.2.3
 Pillow==10.0.0
-Pillow==11.0.0
+Pillow==11.1.0
 protobuf==5.29.2
 PyAutoGUI==0.9.54
 pydub==0.25.1
