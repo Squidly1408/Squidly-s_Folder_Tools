@@ -9,7 +9,7 @@ openpyxl==3.1.2
 pandas==2.2.3
 Pillow==10.0.0
 Pillow==11.1.0
-protobuf==5.29.2
+protobuf==5.29.3
 PyAutoGUI==0.9.54
 pydub==0.25.1
 PyPDF2==3.0.1
@@ -19,3 +19,4 @@ python_pptx==1.0.2
 Requests==2.32.3
 sympy==1.13.1
 sympy==1.13.2
+yt_dlp==2024.12.23
