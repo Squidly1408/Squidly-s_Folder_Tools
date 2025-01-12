@@ -42,6 +42,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - can generate random nbumbers from two selected doubles, one the lower limit, and 2 the upper limit
 - can pixelate images to a chosen pixel ratio
 - youtube video or audio downloader
+- youtbe video or audio playlist downloader
 
 
 
