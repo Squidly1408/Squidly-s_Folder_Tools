@@ -43,6 +43,7 @@ ruby, rust, java, python, c#, C++, javascript, Kotlin, sql, swift, typescript, h
 - can pixelate images to a chosen pixel ratio
 - youtube video or audio downloader
 - youtbe video or audio playlist downloader
+- generate random names for people
 
 
 
