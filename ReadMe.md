@@ -1,5 +1,5 @@
 
-![Logo](https://raw.githubusercontent.com/Squidly1408/Squidly1408/refs/heads/main/images/Squidly's%20Folder%20Tools.png)
+![Logo](https://raw.githubusercontent.com/Squidly1408/Squidly1408/refs/heads/main/images/Squidly1408%20banner%20(Black%20Button%20Background).png)
 
 # Squidly's Folder Tools
 This is Squidly's Folder Tools, it is a file explorer extension made to simplify the tasks of a software developer / machine learning specialist. It is made up of multiple types of scripts, scripts or 'commands' are designed to replace the tasks that would've required you to create a quick script that you might not use again, or go to a dodgy website, or tasks that are a headache to do again and again. It also stores the scripts for future use.
