@@ -1,5 +1,3 @@
-# sections: folders
-
 import os
 from pathlib import Path
 import tkinter as tk
@@ -10,18 +8,24 @@ def rename_files(substring_to_remove, folder_path):
     # Convert folder_path to a Path object
     commands_path = Path(folder_path)
 
-    # Iterate through all Python files in the selected folder
+    # Iterate through all files in the selected folder (no extension filter)
     renamed_files = []
-    for file in commands_path.glob("*.py"):
-        file_name = file.stem  # Get the file name without the extension
-        # Find the index of the substring and truncate everything after it
+    for file in commands_path.glob("*"):  # Match all files regardless of extension
+        file_name = (
+            file.stem.strip()
+        )  # Get the file name without the extension, and strip any whitespace
+        print(f"Checking file: {file_name}")  # Debugging line
+
+        # Check if the substring is anywhere in the file name (case-sensitive)
         if substring_to_remove in file_name:
+            # Split the filename at the substring and keep only the part before it
             new_file_name = file_name.split(substring_to_remove)[0]
+            print(f"Renaming: {file_name} → {new_file_name}")  # Debugging line
             new_file_path = (
-                commands_path / f"{new_file_name}.py"
-            )  # Create new file path
+                commands_path / f"{new_file_name}{file.suffix}"
+            )  # Retain original file extension
             os.rename(file, new_file_path)  # Rename the file
-            renamed_files.append((file.name, f"{new_file_name}.py"))
+            renamed_files.append((file.name, f"{new_file_name}{file.suffix}"))
 
     return renamed_files
 
@@ -39,7 +43,9 @@ def select_folder():
 
 
 def on_rename():
-    substring = substring_entry.get()
+    substring = (
+        substring_entry.get().strip()
+    )  # Ensure no leading/trailing spaces in substring
     folder_path = folder_label.cget("text").replace("Selected Folder: ", "").strip()
 
     if not substring:
@@ -60,7 +66,7 @@ def on_rename():
 
 # Create the UI
 root = tk.Tk()
-root.title("Python File Renamer")
+root.title("File Renamer")
 
 # Input field for the substring
 tk.Label(root, text="Enter Substring to Remove and Truncate After:").pack(pady=5)
